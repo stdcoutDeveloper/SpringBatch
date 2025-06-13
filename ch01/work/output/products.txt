@@ -1,0 +1,9 @@
+PRODUCT_ID,NAME,DESCRIPTION,PRICE
+PR....210,BlackBerry 8100 Pearl,The BlackBerry Pearl is a smartphone developed by Research In Motion (RIM).,124.60
+PR....211,Sony Ericsson W810i,The W810 (also available as the W810i and W810c) is a camera phone produced by Sony Ericsson.,139.45
+PR....212,Samsung MM-A900M Ace,The Samsung MM-A900M was a Sprint phone - a slight cosmetic upgrade from the MM-A900,97.80
+PR....213,Toshiba M285-E 14,This affordable notebook PC is powered by Intel's 1.73 GHz Core Duo T2080 processor - which provides an optimized,166.20
+PR....214,Nokia 2610 Phone,The Nokia 2610 is a lightweight - entry-level mobile phone with a simple - candybar design,145.50
+PR....215,CN Clogs Beach/Garden Clog,Comfortable and fun to wear these clogs are the latest trend in fashion footwear. Wear them either at the beach - in your garden,190.70
+PR....216,AT&T 8525 PDA,The 8525 features 128MB of embedded memory and 64MB RAM - running on a 400 MHz Samsung processor,289.20
+PR....217,Canon Digital Rebel XT 8MP Digital SLR Camera,Canon Digital Rebel XT 8MP Digital SLR Camera,13.70

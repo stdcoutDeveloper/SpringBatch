@@ -21,7 +21,7 @@ public class BatchReaderConfig {
 	public FlatFileItemReader<Product> reader() {
 	    FlatFileItemReader<Product> reader = new FlatFileItemReader<>();
 	    // the input file
-	    reader.setResource(new FileSystemResource("./work/output/output.txt"));
+	    reader.setResource(new FileSystemResource("./work/output/products.txt"));
 	    // Skips first line
 	    reader.setLinesToSkip(1);
 	    reader.setLineMapper(lineMapper());
