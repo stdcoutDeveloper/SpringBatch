@@ -32,6 +32,7 @@ public class ImportProductsIntegrationTest {
 
     @BeforeEach
     public void setUp() {
+    	// Cleans and populates database
         jdbcTemplate.update("DELETE FROM product");
 
         jdbcTemplate.update(
@@ -44,6 +45,7 @@ public class ImportProductsIntegrationTest {
     public void importProducts() throws Exception {
         int initial = jdbcTemplate.queryForObject("SELECT COUNT(1) FROM product", Integer.class);
 
+        // Launches job with parameters
         jobLauncher.run(job, new JobParametersBuilder()
                 .addString("inputResource", "classpath:/input/products.zip")
                 .addString("targetDirectory", "./target/importproductsbatch/")
@@ -52,6 +54,7 @@ public class ImportProductsIntegrationTest {
                 .toJobParameters()
         );
 
+        // Checks correct item insertion
         int nbOfNewProducts = 7;
         int actual = jdbcTemplate.queryForObject("SELECT COUNT(1) FROM product", Integer.class);
         assertEquals(initial + nbOfNewProducts, actual, "Should import 7 new products");
