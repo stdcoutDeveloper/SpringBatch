@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.Resource;
 
 import com.manning.sbia.ch01.batch.ProductFieldSetMapper;
 import com.manning.sbia.ch01.domain.Product;
@@ -18,26 +17,20 @@ public class BatchReaderConfig {
 	
 	@Bean
 	@StepScope
-	public FlatFileItemReader<Product> reader() {
-	    FlatFileItemReader<Product> reader = new FlatFileItemReader<>();
-	    // the input file
-	    reader.setResource(new FileSystemResource("./work/output/products.txt"));
-	    // Skips first line
-	    reader.setLinesToSkip(1);
-	    reader.setLineMapper(lineMapper());
-	    return reader;
+	public FlatFileItemReader<Product> reader(
+			@Value("#{jobParameters['targetDirectory']}") String dir,
+			@Value("#{jobParameters['targetFile']}") String file
+	) {
+		String fullPath = dir + file;
+		
+		FlatFileItemReader<Product> reader = new FlatFileItemReader<>();
+		// the input file
+		reader.setResource(new FileSystemResource(fullPath));
+		// Skips first line
+		reader.setLinesToSkip(1);
+		reader.setLineMapper(lineMapper());
+		return reader;
 	}
-	
-//	@Bean
-//    @StepScope
-//    public FlatFileItemReader<Product> reader(
-//            @Value("#{jobParameters['inputFile']}") Resource inputFile) {
-//        FlatFileItemReader<Product> reader = new FlatFileItemReader<>();
-//        reader.setResource(inputFile);
-//        reader.setLinesToSkip(1);
-//        reader.setLineMapper(lineMapper());
-//        return reader;
-//    }
 	
 	@Bean
 	public DefaultLineMapper<Product> lineMapper() {
