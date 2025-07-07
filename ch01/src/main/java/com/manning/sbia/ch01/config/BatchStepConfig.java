@@ -5,6 +5,7 @@ import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
+import org.springframework.batch.item.file.FlatFileParseException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -30,6 +31,9 @@ public class BatchStepConfig {
 				.<Product, Product>chunk(100, transactionManager)
 				.reader(reader)
 				.writer(writer)
+				.faultTolerant()
+				.skipLimit(5)
+				.skip(FlatFileParseException.class)
 				.build();
 	}
 }
